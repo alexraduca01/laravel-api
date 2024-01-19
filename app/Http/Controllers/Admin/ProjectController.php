@@ -57,9 +57,10 @@ class ProjectController extends Controller
         // add userId to formData
         $formData['user_id'] = $userId;
 
-        if ($request->hasFile('image')){
-            $path = Storage::put('images', $request->image);
+        if ($request->hasFile('image')) {
+            $path = Storage::put('images', $formData['image']);
             $formData['image'] = $path;
+            // dd($path);
         }
         $newProject = Project::create($formData);
         if($request->has('technologies')) {
